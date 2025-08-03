@@ -5,10 +5,10 @@ function PlayerDisplay() {
   const [player, setPlayer] = useState("");
 
   const players = [
-    { id: 1, name: "Lionel Messi", club: "Inter Miami", flag: "AR" },
+    { id: 1, name: "Lionel Messi", club: "Inter Miami", flag: "🇦🇷" },
     { id: 2, name: "Cristiano Ronaldo", club: "Al Nassr", flag: "🇵🇹" },
     { id: 3, name: "Kevin De Bruyne", club: "Man City", flag: "🇧🇪" },
-    { id: 4, name: "Kylian Mbappe", club: "Real Madrid", flag: "FR" },
+    { id: 4, name: "Kylian Mbappe", club: "Real Madrid", flag: "🇫🇷" },
   ];
 
   function toggledrop() {
@@ -23,19 +23,25 @@ function PlayerDisplay() {
   return (
     <>
       <div>
-        <input type="search" name="" id="" placeholder="Enter Player Name" />
+        <input type="search" placeholder="Enter Player Name" />
         <button>X</button>
-        <p>Kylian Mbappe</p>
+        {player && <p>{player}</p>}
       </div>
+
       <div>
-        <label htmlFor="">Select Player</label>
+        <label>Select Player</label>
         <button onClick={toggledrop}>
-          {player || "choose a player"}
-          <span>{">"}</span>
+          {player || "choose a player"} <span>▼</span>
         </button>
 
         {isopen && (
-          <ul>
+          <ul
+            style={{
+              border: "1px solid #ccc",
+              padding: "8px",
+              listStyle: "none",
+            }}
+          >
             {players.map((p) => (
               <li key={p.id} onClick={() => handledrop(p.name)}>
                 {p.flag} {p.name} - {p.club}
